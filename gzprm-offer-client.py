@@ -58,7 +58,7 @@ def service_check(pip):
 #            print (d1)
 
 #            sys.exit()
-            print ("{:<20} {:<43} {:<10} {}".format(data["name"]+" "+data["surname"], data["email"],data["password"],Fore.GREEN+data["phrase"]))
+            print ("{:<20} {:<43} {:<10} {}".format(Fore.BLUE+data["name"]+" "+data["surname"], Fore.YELLOW+data["email"],data["password"],Fore.YELLOW+data["phrase"]+Fore.WHITE))
 #            time.sleep(1)
 
 
