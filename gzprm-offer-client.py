@@ -1,5 +1,6 @@
 import urllib.request, json, os,time,pika,re
 import requests 
+from colorama import Fore, Back, Style
 
 def service_check(pip):
     proxies={'https':'http://'+pip,'http':'http://'+pip}
