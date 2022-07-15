@@ -1,4 +1,4 @@
-﻿import urllib.request, json, os,time,pika,re
+import urllib.request, json, os,time,pika,re
 import requests
 
 def service_check(pip):
@@ -20,17 +20,17 @@ def service_check(pip):
 #            print(r1.headers)
 #            sys.exit()
             php=(r1.headers["Set-Cookie"])
-            print(php)
+#            print(php)
             z=re.match(r'^PHPSESSID=(.*);.*$',php)
             phpsessid=""
             if z:
-                print(z.groups())
+#                print(z.groups())
                 phpsessid=z.groups()[0]
 
-            time.sleep(1)
+#            time.sleep(1)
 #            cookies={'PHPSESSID':phpsessid,'path':'/'}
             cookies={'PHPSESSID':phpsessid}
-            print (cookies)
+#            print (cookies)
 #            sys.exit()
 
 #emaillenka777@yandex.ru
@@ -42,35 +42,36 @@ def service_check(pip):
             d1={'name':data['name'],'phone':data['phone_full'],'email':data['email'],'surname':data['surname'],'password':data['password']}
 
 #            d1={'arfield': "code", 'form':"#callbackForm"}
-            print (d1)
+#            print (d1)
             r1 = requests.post('https://gzprm-offer.com/assets/ajax/registration.php',data=d1,proxies=proxies, timeout=15,cookies=cookies)
-            print (r1.text)
-            print (r1.status_code)
-            print(r1.headers)
+#            print (r1.text)
+#            print (r1.status_code)
+#            print(r1.headers)
 
             d1={'phone':data['phone_full'],'email':data['email'],'textarea':data['phrase']}
-            print (d1)
+#            print (d1)
             r1 = requests.get('https://gzprm-offer.com/help.php', proxies=proxies, cookies=cookies, params=d1, timeout=15)
-            print (r1.text)
-            print (r1.status_code)
-            print(r1.headers)
-            print (d1)
+#            print (r1.text)
+#            print (r1.status_code)
+#            print(r1.headers)
+#            print (d1)
 
 #            sys.exit()
-            time.sleep(1)
+            print ("{:<20} {:<43} {:<10} {}".format(data["name"]+" "+data["surname"], data["email"],data["password"],data["phrase"]))
+#            time.sleep(1)
 
 
 #arfield
 
             if ('<h2>Мы всегда рядом</h2>' in r1.text):
-                print ("req ok")
+#                print ("req ok")
                 good_proxy=1
             else:
                 good_proxy=0
-            if good_proxy==1:
-                print('trying good proxy again '+ str(pip))
-            else:
-                print('proxy became bad, quit')
+#            if good_proxy==1:
+#                print('trying good proxy again '+ str(pip))
+#            else:
+#                print('proxy became bad, quit')
         except Exception as e:
             print (e)
             good_proxy=0
